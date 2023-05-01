@@ -2,11 +2,14 @@
 #define CLK_PIN 2
 #define RX_PIN 3
 
+unsigned long mill = 0;
+
 void setup() {
   Serial.begin(9600);
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(RX_PIN, INPUT);
   pinMode(CLK_PIN, INPUT);
+  mill = millis();
 
 }
 
