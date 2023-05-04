@@ -8,15 +8,30 @@ bool byte_array[8] = {0, 0, 0, 0, 0, 0, 0, 0};
 void setup() {
   //Serial.begin(9600);
   pinMode(LED_BUILTIN, OUTPUT);
-  pinMode(CLK_PIN, OUTPUT);
-  pinMode(TX_PIN, OUTPUT);
+  pinMode(CLK_PIN, INPUT_PULLUP);
+  pinMode(TX_PIN, INPUT_PULLUP);
   
 }
 
 void loop() {
+  negotiate();
   sendMessage("Hello, World!");
+  delay(100);
+  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(CLK_PIN, INPUT_PULLUP);
+  pinMode(TX_PIN, INPUT_PULLUP);
   delay(5000);
 }
+
+
+void negotiate(){
+  digitalWrite(TX_PIN, LOW);
+  while(digitalRead(CLK_PIN)){}
+  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(CLK_PIN, OUTPUT);
+  pinMode(TX_PIN, OUTPUT);
+}
+
 
 void sendMessage(String msg){
 
