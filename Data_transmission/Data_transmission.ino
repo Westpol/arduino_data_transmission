@@ -15,6 +15,7 @@ void setup() {
 
 void loop() {
   negotiate();
+  delay(100);
   sendMessage("Hello, World!");
   delay(100);
   pinMode(LED_BUILTIN, OUTPUT);
@@ -27,6 +28,8 @@ void loop() {
 void negotiate(){
   digitalWrite(TX_PIN, LOW);
   while(digitalRead(CLK_PIN)){}
+  digitalWrite(CLK_PIN, LOW);
+  digitalWrite(TX_PIN, LOW);
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(CLK_PIN, OUTPUT);
   pinMode(TX_PIN, OUTPUT);
